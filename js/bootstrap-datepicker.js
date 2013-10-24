@@ -412,7 +412,7 @@
 		},
 
 		place: function(){
-						if(this.isInline) return;
+			if(this.isInline) return;
 			var calendarWidth = this.picker.outerWidth(),
 				calendarHeight = this.picker.outerHeight(),
 				visualPadding = 10,
@@ -1023,6 +1023,10 @@
 			.bind('changeDate', $.proxy(this.dateUpdated, this));
 
 		this.pickers = $.map(this.inputs, function(i){ return $(i).data('datepicker'); });
+		if(options.autoRange){
+			this.pickers[0].element.datepicker('update',  options.startDate);
+			this.pickers[1].element.datepicker('update',  options.endDate);			
+		}
 		this.updateDates();
 	};
 	DateRangePicker.prototype = {
